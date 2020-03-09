@@ -4,15 +4,12 @@ using UnityEngine;
 
 public class WeaponScript : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    #region weaponstats
+    public int damage;
+    public int firerate;
+    public int range;
+    public int health;
+    public int armor;
+    public int ms;
+    #endregion
 }
