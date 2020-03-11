@@ -6,7 +6,7 @@ public class WeaponScript : MonoBehaviour
 {
     #region weaponstats
     public int damage;
-    public int firerate;
+    public float firerate;
     public int range;
     public int health;
     public int armor;

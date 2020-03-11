@@ -61,4 +61,9 @@ public class BuildingScript : MonoBehaviour
     {
         return house_capacity;
     }
+
+    public void addHealth(int am)
+    {
+        health += am;
+    }
 }

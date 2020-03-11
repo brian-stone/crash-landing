@@ -20,7 +20,7 @@ public class CombatScript : MonoBehaviour
     {
         person = gameObject.GetComponent<PeopleScript>();
         weapon = gameObject.GetComponent<WeaponScript>();
-        //health = person.health + weapon.health;
+        health = person.strength + weapon.health;
         StartCoroutine(combatTurn());
 
     }
@@ -33,10 +33,11 @@ public class CombatScript : MonoBehaviour
 
     private IEnumerator combatTurn()
     {
+        
         while (true)
         {
             Attack(DetermineTarget(InRange()));
-            yield return new WaitForSeconds(1.0f);
+            yield return new WaitForSeconds(weapon.firerate);
             if (isDead())
             {
                 Destroy(gameObject);
@@ -98,8 +99,7 @@ public class CombatScript : MonoBehaviour
 
     public int calculateAttackDamage()
     {
-        //return -1 * (weapon.damage + person.proficency);
-        return -1;
+        return -1 * (weapon.damage + person.proficiency);
     }
 
     public int calculateDefenseDamage()
@@ -134,7 +134,7 @@ public class CombatScript : MonoBehaviour
             }
             else if (other.GetComponent<BuildingScript>() != null)
             {
-                //other.GetComponent<BuildingScript>().health -= 1;
+                other.GetComponent<BuildingScript>().addHealth(-1);
             }
             else
             {
@@ -175,8 +175,7 @@ public class CombatScript : MonoBehaviour
     public GameObject[] InRange()
     {
         GameObject[] enemies = new GameObject[0];
-        //int radius = weapon.range
-        int radius = 5;
+        int radius = weapon.range;
         Vector2 center = this.gameObject.transform.position;
         Collider2D [] hitColliders = Physics2D.OverlapCircleAll(center, radius);
         if (hitColliders.Length > 0)
