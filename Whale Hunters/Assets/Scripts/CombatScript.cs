@@ -8,6 +8,7 @@ public class CombatScript : MonoBehaviour
     public PeopleScript person;
     public WeaponScript weapon;
     public int health;
+    public int armor;
     //Temporary Variables.
     private Vector2 currentTargetVector;
     private GameObject currentTarget;
@@ -20,7 +21,8 @@ public class CombatScript : MonoBehaviour
     {
         person = gameObject.GetComponent<PeopleScript>();
         weapon = gameObject.GetComponent<WeaponScript>();
-        health = person.strength + weapon.health;
+        health = gameObject.GetComponent<PeopleScript>().curhealth + weapon.end * 15;
+        armor = person.strength + weapon.str;
         StartCoroutine(combatTurn());
 
     }
@@ -100,6 +102,18 @@ public class CombatScript : MonoBehaviour
     public int calculateAttackDamage()
     {
         return -1 * (weapon.damage + person.proficiency);
+    }
+
+    public int calculateDamageTaken(int damageinstance) //note damageinstance is a negative value
+    {
+        if( -1 * damageinstance < armor)
+        {
+            return -1; // -1 means 1 damage taken
+        }
+        else
+        {
+            return damageinstance + armor;
+        }
     }
 
     public int calculateDefenseDamage()

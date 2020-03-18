@@ -13,6 +13,12 @@ public class PeopleScript : MonoBehaviour
     public int agility;
     [Tooltip("proficiency = damage and energy production")]
     public int proficiency;
+    [Tooltip("Current hp")]
+    public int curhealth;
+    [Tooltip("basehp for people")]
+    public int basehp = 100;
+    [Tooltip("maximum health")]
+    public int maxhealth;
     #endregion
     #region statfunctions
     public void randomizerstats()
@@ -30,12 +36,27 @@ public class PeopleScript : MonoBehaviour
         endurance += (int)((distributablestats + 1) * v2);
         agility += (int)((distributablestats + 1) * v3);
         proficiency += (int)((distributablestats + 1) * v4);
+        curhealth = strength * 15 + basehp;
+        maxhealth = curhealth;
     }
     public void changestats(string s, int i)
     {
         if (s == "str")
         {
             strength += i;
+            if (i > 0)
+            {
+                curhealth += 5 * i;
+                maxhealth += 5 * i;
+            }
+            else
+            {
+                maxhealth -= 5 * i;
+                if (curhealth > maxhealth)
+                {
+                    curhealth = maxhealth;
+                }
+            }
         }
         if (s == "agi")
         {
@@ -44,6 +65,19 @@ public class PeopleScript : MonoBehaviour
         if (s == "end")
         {
             endurance += i;
+            if (i > 0)
+            {
+                curhealth += 15 * i;
+                maxhealth += 15 * i;
+            }
+            else
+            {
+                maxhealth -= 15 * i;
+                if (curhealth > maxhealth)
+                {
+                    curhealth = maxhealth;
+                }
+            }
         }
         if (s == "prof")
         {
