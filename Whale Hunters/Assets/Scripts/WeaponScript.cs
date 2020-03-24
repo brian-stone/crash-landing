@@ -12,4 +12,11 @@ public class WeaponScript : MonoBehaviour
     public int armor;
     public int ms;
     #endregion
+    public int str;
+    public int prof;
+    public int end;
+    public int agi;
+    public double atkrange;
+    public double firespeed;
+    public double basedmg;
 }

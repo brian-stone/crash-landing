@@ -5,6 +5,7 @@ using UnityEngine;
 public class BuildingScript : MonoBehaviour
 {
     [SerializeField] private int health;
+    [SerializeField] public GameObject[] workersinbuilding; //list of workers in each sector.
 
     [SerializeField] private int energy_output;
     [SerializeField] private int metal_output;
@@ -66,4 +67,13 @@ public class BuildingScript : MonoBehaviour
     {
         health += am;
     }
+
+    public void hospitalHeal()
+    {
+        foreach (GameObject person in workersinbuilding)
+        {
+            person.GetComponent<PeopleScript>().curhealth = person.GetComponent<PeopleScript>().maxhealth;
+        }
+    }
+
 }
