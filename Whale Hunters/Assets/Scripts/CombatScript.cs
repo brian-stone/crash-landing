@@ -7,22 +7,27 @@ public class CombatScript : MonoBehaviour
     //Calculated in start, don't worry about adding these variables
     public PeopleScript person;
     public WeaponScript weapon;
+    public GameScript gs;
+    //Initial health and armor variables
     public int health;
     public int armor;
     //Temporary Variables.
-    private Vector2 currentTargetVector;
-    private GameObject currentTarget;
+    public Vector2 currentTargetVector;
+    public GameObject currentTarget;
     private float speed = 1.0f;
     private float timeMult = 1.0f;
     private bool clickFind = false;
     private bool inClicking = false;
+    public bool enemy = false;//Change to true if enemy.
     // Start is called before the first frame update
     void Start()
     {
         person = gameObject.GetComponent<PeopleScript>();
         weapon = gameObject.GetComponent<WeaponScript>();
         health = gameObject.GetComponent<PeopleScript>().curhealth + weapon.end * 15;
-        armor = person.strength + weapon.str;
+        speed = person.agility;
+        armor = person.strength + weapon.armor;
+        gs = GameObject.FindGameObjectsWithTag("gameManager")[0].GetComponent<GameScript>();
         StartCoroutine(combatTurn());
 
     }
@@ -33,7 +38,7 @@ public class CombatScript : MonoBehaviour
         
     }
 
-    private IEnumerator combatTurn()
+    public IEnumerator combatTurn()
     {
         
         while (true)
@@ -42,6 +47,7 @@ public class CombatScript : MonoBehaviour
             yield return new WaitForSeconds(weapon.firerate);
             if (isDead())
             {
+                gs.remove_person(gameObject);
                 Destroy(gameObject);
             }
         }
@@ -60,8 +66,6 @@ public class CombatScript : MonoBehaviour
             transform.LookAt(currentTargetVector);
         } 
 
-        
-
 
     }
 
@@ -71,7 +75,7 @@ public class CombatScript : MonoBehaviour
         yield return new WaitForSeconds(0.2f);
         
         
-        while (clickFind)
+        while (clickFind && !enemy)
         {
             yield return null;
             
