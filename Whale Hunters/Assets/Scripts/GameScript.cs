@@ -16,7 +16,7 @@ public class GameScript : MonoBehaviour
     public List<PeopleScript> Persons = new List<PeopleScript>(); 
     public List<BuildingScript> buildings = new List<BuildingScript>();
     public List<WeaponScript> weapons = new List<WeaponScript>();
-    public List<EnemyAIScript> enemyAIs = new List<EnemyAIScript>();
+    public List<EnemyAI> enemyAIs = new List<EnemyAI>();
     public List<WeaponScript> friendlies = new List<WeaponScript>();
 
     //Keeps track of enemy waves, i=Each Night/wave, j=Enemy gameobjects spawned of time tracked in enemyGameObjects.
@@ -60,7 +60,7 @@ public class GameScript : MonoBehaviour
             {
                 GameObject g = enemyGameObjects[j];
                 g = Instantiate(g);
-                enemyAIs.Add(g.GetComponent<EnemyAIScript>());
+                enemyAIs.Add(g.GetComponent<EnemyAI>());
             }
         }
     }
@@ -81,7 +81,7 @@ public class GameScript : MonoBehaviour
     private int countEnemies()
     {
         int count = 0;
-        foreach (EnemyAIScript enemy in enemyAIs)
+        foreach (EnemyAI enemy in enemyAIs)
         {
             if (enemy != null)
             {

@@ -8,6 +8,7 @@ public class EnemyAI : MonoBehaviour
     public Collider2D enemyDetect;
     [Tooltip("list of objects in det range")]
     public List<GameObject> detectedlist;
+    public CombatScript cs;
     /*[Tooltip("collider to see what enemies are in attack range")]
     public Collider2D enemyinrange;
     [Tooltip("list of objects in det range")]
@@ -36,7 +37,7 @@ public class EnemyAI : MonoBehaviour
     private void Update()
     {
         detectedlist = enemyDetect.GetComponent<EnemyColliderScript>().getlist();
-        CombatScript.CurrentTargetPosition = closestenemy(detectedlist).transform.position;
+        cs.currentTargetVector = closestenemy(detectedlist).transform.position;
     }
     
 }
