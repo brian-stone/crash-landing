@@ -9,6 +9,7 @@ public class UIScript2 : MonoBehaviour
     
     //Put the different building types in here, named correctly.
     public BuildingScript[] bs;
+    public WeaponScript[] weaponTypes;
 
     //Text Variables
     public Text gsOutput;
@@ -17,10 +18,12 @@ public class UIScript2 : MonoBehaviour
     //Menu Variables
     public GameObject buildingMenu;
     public GameObject combatMenu;
+    public GameObject weaponProductionMenu;
 
     //Building variables
     
     Dictionary<string, BuildingScript> buildingTypes = new Dictionary<string, BuildingScript>();
+    Dictionary<string, WeaponScript> wT = new Dictionary<string, WeaponScript>();
     public BuildingScript building_temp;
     public bool placing_building = false;
 
@@ -30,6 +33,12 @@ public class UIScript2 : MonoBehaviour
         foreach (BuildingScript b in bs)
         {
             buildingTypes.Add(b.name, b);
+
+        }
+
+        foreach (WeaponScript w in weaponTypes)
+        {
+            wT.Add(w.name, w);
 
         }
         StartCoroutine(updateGameVars());
@@ -43,6 +52,11 @@ public class UIScript2 : MonoBehaviour
         {
             placing_building = false;
         }
+        //Closes combat Menu
+        if(Input.GetKeyDown(KeyCode.O))
+        {
+            combatMenu.SetActive(false);
+        }
     }
 
     IEnumerator updateGameVars()
@@ -53,7 +67,7 @@ public class UIScript2 : MonoBehaviour
             yield return new WaitForSeconds(2.0f);
         }
     }
-
+    //Output Displays and menu reveals
     public void updateGSOutput()
     {
         string output = "Energy: " + gs.energy + "  Metals: " + gs.metal + "    Food: " + gs.food+ "    Population: "+gs.people+"   Day: "+gs.day;
@@ -67,9 +81,7 @@ public class UIScript2 : MonoBehaviour
         if (combatMenu.activeSelf == false)
         {
 
-            //homeImg.enabled = true;
             combatMenu.SetActive(true);
-            //svs.updateSchContent ();
         }
         else
         {
@@ -84,9 +96,7 @@ public class UIScript2 : MonoBehaviour
         if (buildingMenu.activeSelf == false)
         {
 
-            //homeImg.enabled = true;
             buildingMenu.SetActive(true);
-            //svs.updateSchContent ();
         }
         else
         {
@@ -95,7 +105,29 @@ public class UIScript2 : MonoBehaviour
         
     }
 
-    //Places a building
+    public void revealWeaponProductionMenu()
+    {
+
+        if (weaponProductionMenu.activeSelf == false)
+        {
+
+            weaponProductionMenu.SetActive(true);
+        }
+        else
+        {
+            weaponProductionMenu.SetActive(false);
+        }
+
+    }
+
+    public void buildWeapon(string type)
+    {
+        WeaponScript weapon = wT[type];
+        gs.add_weapons(weapon.gameObject);
+        gs.subtractMetal(weapon.metal_cost);
+    }
+
+    //3 functions below places a building
     public void build(string type)
     {
         placeBuilding(buildingTypes[type]); 
@@ -106,7 +138,6 @@ public class UIScript2 : MonoBehaviour
         building_temp = Instantiate(building_type);
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         RaycastHit hit;
-        //Physics.Ra
         if (Physics.Raycast(ray, out hit))
         {
             //firstPoint = hit.point;

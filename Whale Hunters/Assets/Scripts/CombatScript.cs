@@ -234,7 +234,7 @@ public class CombatScript : MonoBehaviour
 
     private void OnMouseOver()
     {
-       if(Input.GetKeyDown(KeyCode.I))
+       if (Input.GetKeyDown(KeyCode.I))
         {
             gs.uiScript.displayCombatOutput(weapon);
         } 

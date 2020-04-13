@@ -11,6 +11,7 @@ public class WeaponScript : MonoBehaviour
     public int health;
     public int armor;
     public int ms;
+    public int metal_cost;
     #endregion
     public int str;
     public int prof;

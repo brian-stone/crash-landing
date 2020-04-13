@@ -170,6 +170,14 @@ public class GameScript : MonoBehaviour
         
     }
 
+    public void add_weapons(GameObject b)
+    {
+        b = Instantiate(b);
+        weapons.Add(b.GetComponent<WeaponScript>());
+         
+
+    }
+
     //Adder/subtracter Functions
     public void subtractMetal(int am)
     {
