@@ -107,7 +107,15 @@ public class CombatScript : MonoBehaviour
     {
         if currentTarget.slime? == True: //(or is this enemy.slime?) .slime is from EnemyAIStats.cs.
         {
-            return -1;
+            if (weapon.damage + person.proficiency) > 30:
+            {
+                int dice = (rnd.Next(1,6) * -1)
+                return dice;
+            }
+            else:
+            {
+                return -1;
+            }
         }
         else:
         {
