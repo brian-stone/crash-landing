@@ -109,7 +109,7 @@ public class CombatScript : MonoBehaviour
         {
             if (weapon.damage + person.proficiency) > 30:
             {
-                int dice = (rnd.Next(1,6) * -1)
+                int dice = (rnd.Next(1,((weapon.damage + person.proficiency)-24)) * -1)
                 return dice;
             }
             else:
