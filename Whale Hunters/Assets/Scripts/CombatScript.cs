@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -105,7 +105,14 @@ public class CombatScript : MonoBehaviour
 
     public int calculateAttackDamage()
     {
-        return -1 * (weapon.damage + person.proficiency);
+        if currentTarget.slime? == True: //(or is this enemy.slime?) .slime is from EnemyAIStats.cs.
+        {
+            return -1;
+        }
+        else:
+        {
+            return -1 * (weapon.damage + person.proficiency);
+        }
     }
 
     public int calculateDamageTaken(int damageinstance) //note damageinstance is a negative value
