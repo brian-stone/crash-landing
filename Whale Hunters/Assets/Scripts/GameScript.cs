@@ -22,6 +22,7 @@ public class GameScript : MonoBehaviour
     //Keeps track of enemy waves, i=Each Night/wave, j=Enemy gameobjects spawned of time tracked in enemyGameObjects.
     public int[][] enemyNumbers;
     public GameObject[] enemyGameObjects;
+    public UIScript2 uiScript;
 
     public float time;
     public int day = 0;

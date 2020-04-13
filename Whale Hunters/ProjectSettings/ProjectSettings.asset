@@ -594,6 +594,7 @@ PlayerSettings:
       daydreamIconForeground: {fileID: 0}
       daydreamIconBackground: {fileID: 0}
   cloudServicesEnabled:
+    Collab: 1
     UNet: 1
   luminIcon:
     m_Name: 
@@ -614,10 +615,10 @@ PlayerSettings:
   facebookXfbml: 0
   facebookFrictionlessRequests: 1
   apiCompatibilityLevel: 6
-  cloudProjectId: 
+  cloudProjectId: a4956e4e-24b0-42e5-a577-aa4ee6d06c28
   framebufferDepthMemorylessMode: 0
-  projectName: 
-  organizationId: 
+  projectName: Whale Hunters (1)
+  organizationId: big-whale-hunters
   cloudEnabled: 0
   enableNativePlatformBackendsForNewInputSystem: 0
   disableOldInputManagerSupport: 0

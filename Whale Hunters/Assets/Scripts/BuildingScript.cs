@@ -14,6 +14,7 @@ public class BuildingScript : MonoBehaviour
 
     [SerializeField] private int energy_cost;
     [SerializeField] private int maintenance_cost;
+    public int metal_cost;
 
     [SerializeField] private int house_capacity;
 
@@ -161,5 +162,5 @@ public class BuildingScript : MonoBehaviour
         house_capacity+=1;
         
     }
-    
+
 }

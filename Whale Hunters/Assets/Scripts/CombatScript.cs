@@ -8,6 +8,7 @@ public class CombatScript : MonoBehaviour
     public PeopleScript person;
     public WeaponScript weapon;
     public GameScript gs;
+  
     //Initial health and armor variables
     public int health;
     public int armor;
@@ -231,6 +232,13 @@ public class CombatScript : MonoBehaviour
         }
     }
 
+    private void OnMouseOver()
+    {
+       if(Input.GetKeyDown(KeyCode.I))
+        {
+            gs.uiScript.displayCombatOutput(weapon);
+        } 
+    }
 
 
 

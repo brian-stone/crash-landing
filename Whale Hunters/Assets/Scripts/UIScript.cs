@@ -14,6 +14,7 @@ public class UIScript : MonoBehaviour
     private GameObject UIVillagerPrefab;
     [SerializeField]
     private float entryHeight;
+    
 
     List<GameObject> villagers = new List<GameObject>();
 
@@ -66,4 +67,6 @@ public class UIScript : MonoBehaviour
     {
 
     }
+
+    
 }
